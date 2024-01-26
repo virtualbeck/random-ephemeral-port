@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"math/rand"
 	"net"
-	"os"
 	"sync"
 )
 
@@ -77,7 +76,5 @@ func main() {
 
 	// Get the first available port from the channel
 	port := <-availablePorts
-
 	fmt.Println(port)
-	os.Exit(0)
 }
