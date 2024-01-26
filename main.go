@@ -17,16 +17,17 @@ func generateRandomPort() int {
 		// Generate a random port number between min and max
 		port := rand.Intn(max-min+1) + min
 
+		// Check if the port is one of the known ports
+		if contains(knownPorts, port) {
+			continue
+		}
+
 		// Check if the port is in use on localhost
 		conn, err := net.Listen("tcp", ":"+strconv.Itoa(port))
 		if err == nil {
 			conn.Close()
-
-			// Check if the port is one of the known ports
-			if !contains(knownPorts, port) {
-				return port
-			}
 		}
+		return port
 	}
 }
 
